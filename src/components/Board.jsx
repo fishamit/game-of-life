@@ -6,10 +6,10 @@ import styled from "styled-components";
 const BoardContainer = styled.div`
   height: ${(props) => props.size.y * props.zoom}px;
   width: ${(props) => props.size.x * props.zoom}px;
-  background-color: #1a1a1a;
+
   display: flex;
   flex-wrap: wrap;
-  box-shadow: 0 0 10px 0;
+  box-shadow: 0 0 20px 0 #000000ff;
 `;
 
 function Board() {
@@ -18,6 +18,7 @@ function Board() {
     <BoardContainer
       size={state.size}
       zoom={state.zoom}
+      playing={state.playing}
       onMouseDown={(e) => {
         e.preventDefault();
         dispatch({ type: "SET_PAINTING", payload: true });

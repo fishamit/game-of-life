@@ -5,7 +5,7 @@ import { pixelPaintContext } from "../context/pixelPaint";
 const PixelStyle = styled.div`
   width: ${(props) => 100 / props.size.x}%;
   height: ${(props) => 100 / props.size.y}%;
-  background-color: ${(props) => (props.alive ? "#000" : "white")};
+  background-color: ${(props) => (props.alive ? "#222222" : "#fff2a8")};
   box-sizing: border-box;
   border: 1px solid black;
 

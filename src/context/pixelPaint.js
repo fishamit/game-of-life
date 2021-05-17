@@ -8,8 +8,9 @@ const initialState = {
   size: {},
   painting: false,
   currentColor: "#000000ff",
-  zoom: 30,
+  zoom: 15,
   playing: false,
+  turn: 0,
 };
 
 const reducer = (state, action) => {
@@ -48,11 +49,15 @@ const reducer = (state, action) => {
       return { ...state, playing: true };
     }
     case "STOP_GAME": {
-      return { ...state, playing: false };
+      return { ...state, playing: false, turn: 0 };
     }
     case "SET_ARR": {
-      return { ...state, arr: action.payload };
+      return { ...state, arr: action.payload, turn: state.turn + 1 };
     }
+    case "TICK": {
+      return { ...state, turn: state.turn + 1 };
+    }
+
     default: {
       return state;
     }
