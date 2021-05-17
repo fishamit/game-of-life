@@ -2,7 +2,7 @@
   "name": "pixel-paint",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://fishamit.github.io/pixel-paint",
+  "homepage": "https://fishamit.github.io/game-of-life",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@testing-library/jest-dom": "^5.12.0",
