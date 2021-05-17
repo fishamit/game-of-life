@@ -8,7 +8,8 @@ const initialState = {
   size: {},
   painting: false,
   currentColor: "#000000ff",
-  zoom: 10,
+  zoom: 30,
+  playing: false,
 };
 
 const reducer = (state, action) => {
@@ -24,7 +25,7 @@ const reducer = (state, action) => {
       if (state.painting)
         return {
           ...state,
-          arr: paintPixel(state.arr, action.payload, state.currentColor),
+          arr: paintPixel(state.arr, action.payload, state.size),
         };
       return state;
     }
@@ -42,6 +43,15 @@ const reducer = (state, action) => {
 
     case "SET_COLOR": {
       return { ...state, currentColor: action.payload };
+    }
+    case "START_GAME": {
+      return { ...state, playing: true };
+    }
+    case "STOP_GAME": {
+      return { ...state, playing: false };
+    }
+    case "SET_ARR": {
+      return { ...state, arr: action.payload };
     }
     default: {
       return state;

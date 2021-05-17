@@ -1,11 +1,19 @@
-export default (array, coordinates, currentColor) => {
-  const tmp = [...array];
+// export default (array, coordinates, currentColor) => {
+//   const tmp = [...array];
+//   const el = tmp.find(
+//     (p) =>
+//       p.coordinates.x === coordinates.x && p.coordinates.y === coordinates.y
+//   );
 
-  tmp.find(
-    (p) =>
-      p.coordinates.x === coordinates.x && p.coordinates.y === coordinates.y
-  ).color = currentColor;
+//   el.alive = true;
+//   return tmp;
+// };
+
+export default (array, coordinates, size) => {
+  const tmp = JSON.parse(JSON.stringify([...array]));
+
+  tmp[size.y * coordinates.y + coordinates.x].alive =
+    !tmp[size.y * coordinates.y + coordinates.x].alive;
+
   return tmp;
 };
-
-//paintPixel(state.arr, action.payload, state.currentColor),

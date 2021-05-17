@@ -4,7 +4,7 @@ export default (size) => {
     for (let x = 0; x < size.x; x++) {
       tmp.push({
         coordinates: { x, y },
-        color: "white",
+        alive: false,
       });
     }
   }

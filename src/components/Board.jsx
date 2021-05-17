@@ -27,7 +27,7 @@ function Board() {
         <Pixel
           key={`${p.coordinates.x},${p.coordinates.y}`}
           coordinates={p.coordinates}
-          color={p.color}
+          alive={p.alive}
         />
       ))}
     </BoardContainer>
