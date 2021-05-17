@@ -6,6 +6,8 @@ import styled from "styled-components";
 const BoardContainer = styled.div`
   height: ${(props) => props.size.y * props.zoom}px;
   width: ${(props) => props.size.x * props.zoom}px;
+  min-height: ${(props) => props.size.y * props.zoom}px;
+  min-width: ${(props) => props.size.x * props.zoom}px;
 
   display: flex;
   flex-wrap: wrap;

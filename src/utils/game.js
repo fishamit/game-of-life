@@ -49,5 +49,7 @@ export const game = (arr, dispatch, size) => {
       else newArr.push({ ...cell, alive: false });
     }
   });
+
+  if (!newArr.find((cell) => cell.alive)) dispatch({ type: "STOP_GAME" });
   dispatch({ type: "SET_ARR", payload: newArr });
 };

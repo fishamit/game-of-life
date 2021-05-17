@@ -3,9 +3,11 @@ import { pixelPaintContext } from "../context/pixelPaint";
 import Board from "./Board";
 import styled from "styled-components";
 import ColorPicker from "./ColorPicker";
-import Button from "./Button";
+import Button from "@material-ui/core/Button";
 import Slider from "@material-ui/core/Slider";
 import { game } from "../utils/game";
+import Link from "@material-ui/core/Link";
+import Box from "@material-ui/core/Box";
 
 const Container = styled.div`
   width: 100vw;
@@ -19,7 +21,7 @@ const Container = styled.div`
 function PixelPaint() {
   const { state, dispatch } = useContext(pixelPaintContext);
   const [myTimeout, setMyTimeout] = useState(null);
-  const [speed, setSpeed] = useState(500);
+  const [speed, setSpeed] = useState(350);
   useEffect(() => {
     dispatch({ type: "INIT", payload: { x: 32, y: 32 } });
   }, []);
@@ -65,18 +67,65 @@ function PixelPaint() {
       }}
       onMouseUp={() => dispatch({ type: "SET_PAINTING", payload: false })}
     >
+      <h1
+        style={{
+          marginBottom: "50px",
+          color: "white",
+        }}
+      >
+        Conway's game of life
+      </h1>
       <Board />
-
+      <p
+        style={{
+          color: "white",
+          width: "100px",
+          marginTop: "50px",
+          marginBottom: "0",
+          textAlign: "center",
+        }}
+      >
+        Frame time
+      </p>
       <Slider
-        style={{ width: "100px", marginTop: "50px" }}
-        min={200}
-        max={2000}
+        min={100}
+        max={1000}
+        style={{ width: "100px" }}
         value={speed}
         onChange={(e, n) => {
           setSpeed(n);
         }}
       ></Slider>
-      <Button onClick={handleClick}>{state.playing ? "Stop" : "Start"}</Button>
+      <Box marginTop={3}>
+        <Button
+          variant="contained"
+          color={state.playing ? "secondary" : "primary"}
+          onClick={handleClick}
+          style={{ width: "100px" }}
+        >
+          {state.playing ? "Stop" : "Start"}
+        </Button>
+      </Box>
+
+      <Box marginTop={3}>
+        <Link
+          href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+          target="_blank"
+        >
+          Read more
+        </Link>
+      </Box>
+      <p
+        style={{
+          color: "white",
+
+          marginTop: "50px",
+          marginBottom: "0",
+          textAlign: "center",
+        }}
+      >
+        By Amit Fisher
+      </p>
     </Container>
   );
 }
