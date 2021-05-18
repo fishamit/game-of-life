@@ -2,12 +2,13 @@ import React, { useEffect, useContext, useState } from "react";
 import { pixelPaintContext } from "../context/pixelPaint";
 import Board from "./Board";
 import styled from "styled-components";
-import ColorPicker from "./ColorPicker";
+import orange from "@material-ui/core/colors/orange";
 import Button from "@material-ui/core/Button";
 import Slider from "@material-ui/core/Slider";
-import { game } from "../utils/game";
 import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import { game } from "../utils/game";
 
 const Container = styled.div`
   width: 100vw;
@@ -67,16 +68,19 @@ function PixelPaint() {
       }}
       onMouseUp={() => dispatch({ type: "SET_PAINTING", payload: false })}
     >
-      <h1
+      <Typography
+        variant="h2"
         style={{
           marginBottom: "50px",
           color: "white",
         }}
       >
-        Conway's game of life
-      </h1>
+        Conway's Game of Life
+      </Typography>
       <Board />
-      <p
+      <Typography
+        variant="body1"
+        noWrap
         style={{
           color: "white",
           width: "100px",
@@ -86,7 +90,7 @@ function PixelPaint() {
         }}
       >
         Frame time
-      </p>
+      </Typography>
       <Slider
         min={100}
         max={1000}
@@ -96,7 +100,12 @@ function PixelPaint() {
           setSpeed(n);
         }}
       ></Slider>
-      <Box marginTop={3}>
+      <Box
+        marginTop={3}
+        display="flex"
+        justifyContent="space-evenly"
+        width="250px"
+      >
         <Button
           variant="contained"
           color={state.playing ? "secondary" : "primary"}
@@ -105,6 +114,15 @@ function PixelPaint() {
         >
           {state.playing ? "Stop" : "Start"}
         </Button>
+        <Button
+          disabled={state.playing}
+          variant="contained"
+          color="secondary"
+          onClick={() => dispatch({ type: "INIT", payload: { x: 32, y: 32 } })}
+          style={{ width: "100px" }}
+        >
+          Clear
+        </Button>
       </Box>
 
       <Box marginTop={3}>
@@ -112,20 +130,10 @@ function PixelPaint() {
           href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
           target="_blank"
         >
-          Read more
+          <Typography variant="body1">Read more</Typography>
         </Link>
       </Box>
-      <p
-        style={{
-          color: "white",
-
-          marginTop: "50px",
-          marginBottom: "0",
-          textAlign: "center",
-        }}
-      >
-        By Amit Fisher
-      </p>
+      <Typography variant="body1">By Amit Fisher</Typography>
     </Container>
   );
 }
